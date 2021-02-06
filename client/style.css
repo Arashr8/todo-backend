@@ -1,0 +1,13 @@
+li:hover {
+    background: rgb(245, 245, 245);
+}
+
+ul li .form-check{
+    width: 100%;
+}
+
+ul li span {
+    font-size: 11px;
+    float: right;
+    display: inline-block;
+}

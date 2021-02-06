@@ -1,0 +1,12 @@
+<li data-date="<%= new Date(todo.updatedAt).getTime() %>" class="d-flex border-bottom p-3" id="<%= todo._id %>">
+    <%= todo.index %>
+    <div class="form-check">
+        <label class="form-check-label todo-label">
+            <%= todo.text %>
+        </label>
+    </div>
+
+    <span class="text-muted"><%= new Date(todo.updatedAt).toLocaleTimeString() %></span>
+    <i class="remove fa fa-<%= todo.done ? 'undo' : 'check' %> ml-auto text-<%= todo.done ? 'info' : 'success' %>" id="complete-<%= todo._id %>"></i>
+    <i class="remove fa fa-remove text-danger" style="margin-left: 10px!important;" id="remove-<%= todo._id %>"></i>
+</li>
