@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Register User</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <span id="errors"></span>
+    <form action="/auth/register" method="post" onsubmit="return isValidForm()">
+        <input type="email" name="email" id="user-email">
+        <input type="password" name="password" id="user-password">
+        <input type="password" name="confirm-password" id="user-confirmed-password">
+        <input type="submit" value="register">
+    </form>
+    <script src="form.js"></script>
+</body>
+
+</html>
