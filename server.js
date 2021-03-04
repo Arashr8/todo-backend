@@ -6,7 +6,7 @@ require('./db')
 
 // routes
 const todoRoute = require('./routes/todo')
-const authRoute = require('./routes/auth')
+const authRoute = require('./routes/user')
 
 const app = express()
 const staticFolder = express.static('client')

@@ -2,9 +2,9 @@ const router = require('express').Router()
 const ejs = require('ejs');
 const User = require('../models/User')
 
-router.get('/auth/register', async function(req, res) {
+router.get('/user/register', async function(req, res) {
     try {
-        ejs.renderFile('./client/Auth/register.ejs', {}, null, function(err, html) {
+        ejs.renderFile('./client/user/register.ejs', {}, null, function(err, html) {
             res.send(html)
         })
     } catch (e) {
@@ -13,21 +13,22 @@ router.get('/auth/register', async function(req, res) {
         })
     }
 })
-router.post('/auth/register', async function(req, res) {
+router.post('/user/register', async function(req, res) {
     try {
         const email = req.body.email
         const password = req.body.password
-        const user = new User({
+        const user = User.create({
             email,
             password
         })
-        const saveUser = await user.save()
 
-        res.json({ message: "User inserted successfully", succes: ture })
-    } catch (e) {
-        ejs.renderFile('./client/index.ejs', { error: e }, null, function(err, html) {
-            res.status(400).send(html)
+
+        ejs.renderFile('./client/user/register.ejs', { messsage: "User has been created successfully" }, null, function(err, html) {
+            res.send(html)
         })
+    } catch (e) {
+        console.log(e);
+        res.json({ error: e })
     }
 })
 

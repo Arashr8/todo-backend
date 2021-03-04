@@ -10,14 +10,15 @@
 </head>
 
 <body>
+
     <span id="errors"></span>
-    <form action="/auth/register" method="post" onsubmit="return isValidForm()">
+    <form action="/user/register" method="post" onsubmit="return isValidForm()">
         <input type="email" name="email" id="user-email">
         <input type="password" name="password" id="user-password">
         <input type="password" name="confirm-password" id="user-confirmed-password">
         <input type="submit" value="register">
     </form>
-    <script src="form.js"></script>
+    <script src="./form.js"></script>
 </body>
 
 </html>
