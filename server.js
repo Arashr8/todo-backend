@@ -8,6 +8,7 @@ require('./db')
 // routes
 const todoRoute = require('./routes/todo')
 const authRoute = require('./routes/user')
+const homeRoute = require('./routes/home')
 
 const app = express()
 const staticFolder = express.static('client')
@@ -22,6 +23,7 @@ app.use(cookieParser())
 // routes use
 app.use('/todos', todoRoute)
 app.use('/user', authRoute)
+app.use(homeRoute)
 
 /**
  * it starts the server on port 80
