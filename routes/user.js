@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const ejs = require('ejs');
+const bcrypt = require('bcrypt')
 const path = require('path')
 const User = require('../models/User')
 
@@ -21,10 +22,13 @@ router.post('/register', async function(req, res) {
         const email = req.body.email
         const password = req.body.password
             // Todo: Check if user already exists
-            //Todo: Encript password 
+
+        // Encrype password
+        const salt = await bcrypt.genSalt(10)
+        const hashPass = await bcrypt.hash(password, salt)
         const user = User.create({
             email,
-            password
+            password: hashPass
         })
 
         res.redirect('/todos?loging=true')
@@ -51,12 +55,14 @@ router.post('/login', async function(req, res) {
     try {
         const email = req.body.email
         const password = req.body.password
-        let checkUser = await User.findOne({ "email": email, "password": password })
-
+        let checkUser = await User.findOne({ "email": email })
         if (checkUser) {
-            // Todo: set JWT cookies
-            res.cookie("user", checkUser._id)
-            res.redirect('/todos')
+            const passwordIsValid = await bcrypt.compare(password, checkUser.password)
+            if (passwordIsValid) {
+                // Todo: set JWT cookies
+                res.cookie("user", checkUser._id)
+                res.redirect('/todos')
+            }
         } else {
             res.redirect('/todos')
         }
