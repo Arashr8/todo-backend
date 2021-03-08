@@ -4,8 +4,13 @@ window.onload = function() {
 
 function addEventListeners() {
     const registerbtn = document.getElementById("registerBtn")
-    registerbtn.addEventListener("click", registerUser)
-
+    if (registerbtn) {
+        registerbtn.addEventListener("click", registerUser)
+    }
+    const loginbtn = document.getElementById("loginBtn")
+    if (loginbtn) {
+        loginbtn.addEventListener("click", loginUser)
+    }
 }
 
 function isValidForm() {
@@ -55,5 +60,28 @@ async function registerUser(event) {
         } else {
             info_placeholder.innerHTML = result.message
         }
+    }
+}
+
+async function loginUser() {
+    const email_element = document.getElementById("user-email")
+    const password_element = document.getElementById("user-password")
+    const error_placeholder = document.getElementById("errors")
+    const response = await fetch('/user/login', {
+        method: 'post',
+        body: JSON.stringify({
+            email: email_element.value,
+            password: password_element.value
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const result = await response.json()
+    error_placeholder.innerHTML = ""
+    if (!result.success) {
+        error_placeholder.innerHTML = result.message
+    } else {
+        window.location.replace("/todos")
     }
 }

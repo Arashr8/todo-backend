@@ -64,15 +64,13 @@ router.post('/login', async function(req, res) {
             if (passwordIsValid) {
                 // Todo: set JWT cookies
                 res.cookie("user", checkUser._id)
-                res.redirect('/todos')
+                res.send({ success: true })
             }
         }
-        ejs.renderFile('./client/user/login.ejs', { message: "Username or Password is incorrect" }, null, function(err, html) {
-            res.send(html)
-        })
+        res.send({ success: false, message: "Username or Password is incorrect" })
     } catch (e) {
         console.log(e);
-        res.json({ error: e })
+        res.send({ success: false, message: e })
     }
 })
 
