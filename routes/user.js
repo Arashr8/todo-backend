@@ -21,7 +21,10 @@ router.post('/register', async function(req, res) {
     try {
         const email = req.body.email
         const password = req.body.password
-            // Todo: Check if user already exists
+        const currentUser = await User.findOne({ email })
+        if (currentUser) {
+            res.send({ success: false, message: `Email ${email} already exists. Pleas try to login` })
+        }
 
         // Encrype password
         const salt = await bcrypt.genSalt(10)
@@ -31,12 +34,11 @@ router.post('/register', async function(req, res) {
             password: hashPass
         })
 
-        res.redirect('/todos?loging=true')
+        res.send({ success: true, message: "User has been created successfully. You can login <a href='/user/login'>here</a>" })
     } catch (e) {
 
         console.log(e);
-        res.json({ error: e })
-        res.redirect('/register')
+        res.send({ success: false, message: e })
     }
 })
 
@@ -58,14 +60,16 @@ router.post('/login', async function(req, res) {
         let checkUser = await User.findOne({ "email": email })
         if (checkUser) {
             const passwordIsValid = await bcrypt.compare(password, checkUser.password)
+            console.log(passwordIsValid);
             if (passwordIsValid) {
                 // Todo: set JWT cookies
                 res.cookie("user", checkUser._id)
                 res.redirect('/todos')
             }
-        } else {
-            res.redirect('/todos')
         }
+        ejs.renderFile('./client/user/login.ejs', { message: "Username or Password is incorrect" }, null, function(err, html) {
+            res.send(html)
+        })
     } catch (e) {
         console.log(e);
         res.json({ error: e })
