@@ -29,12 +29,13 @@ router.post('/register', async function(req, res) {
         // Encrype password
         const salt = await bcrypt.genSalt(10)
         const hashPass = await bcrypt.hash(password, salt)
-        const user = User.create({
+        const user = await User.create({
             email,
             password: hashPass
         })
+        res.cookie("user", user._id)
 
-        res.send({ success: true, message: "User has been created successfully. You can login <a href='/user/login'>here</a>" })
+        res.send({ success: true, message: "User has been created successfully. Click <a href='/todos'>here</a> to visit dashboard" })
     } catch (e) {
 
         console.log(e);

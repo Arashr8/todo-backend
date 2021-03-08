@@ -62,6 +62,8 @@ async function registerUser(event) {
             error_placeholder.innerHTML = result.message
         } else {
             info_placeholder.innerHTML = result.message
+            const form = document.getElementById("registerForm")
+            form.style.display = "none"
         }
     }
 }
