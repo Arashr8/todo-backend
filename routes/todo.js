@@ -12,9 +12,8 @@ router.get('/', async function(req, res) {
         res.redirect('/user/login')
     }
     try {
-        //Todo: Reterive the current user
-        const todos = await Todo.find({})
-        ejs.renderFile('./client/index.ejs', { todos, login: false }, null, function(err, html) {
+        const todos = await Todo.find({ user_id: userId })
+        ejs.renderFile('./client/index.ejs', { todos, user_id: userId }, null, function(err, html) {
             res.send(html)
         })
     } catch (e) {

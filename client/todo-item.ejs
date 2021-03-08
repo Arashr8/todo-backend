@@ -7,6 +7,8 @@
         </div>
 
         <span class="text-muted"><%= new Date(todo.updatedAt).toLocaleTimeString() %></span>
+        <i class="remove fa fa-<%= todo.done ? 'undo' : 'check' %> ml-auto text-<%= todo.done ? 'info' : 'success' %>" id="complete-<%= todo._id %>"></i>
+        <i class="remove fa fa-remove text-danger" style="margin-left: 10px!important;" id="remove-<%= todo._id %>"></i>
 
 
 </li>

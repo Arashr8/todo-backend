@@ -11,7 +11,7 @@ function handleAddItem() {
 }
 
 async function addItemTodo(text) {
-    const result = await fetch('/addTodo', {
+    const result = await fetch('/todos/add', {
         method: 'post',
         body: JSON.stringify({
             todo: text
