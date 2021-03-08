@@ -20,6 +20,8 @@ router.post('/register', async function(req, res) {
     try {
         const email = req.body.email
         const password = req.body.password
+            // Todo: Check if user already exists
+            //Todo: Encript password 
         const user = User.create({
             email,
             password
@@ -52,6 +54,7 @@ router.post('/login', async function(req, res) {
         let checkUser = await User.findOne({ "email": email, "password": password })
 
         if (checkUser) {
+            // Todo: set JWT cookies
             res.cookie("user", checkUser._id)
             res.redirect('/todos')
         } else {

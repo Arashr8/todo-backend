@@ -6,6 +6,7 @@ const Todo = require('../models/Todo')
 
 // root path setup to index.ejs render
 router.get('/', async function(req, res) {
+    // Change this to get value from jwt
     const userId = req.cookies.user;
     if (!userId) {
         res.redirect('/user/login')
@@ -24,12 +25,17 @@ router.get('/', async function(req, res) {
 })
 
 // to add something to db
-router.post('/addTodo', function(req, res) {
+router.post('/add', function(req, res) {
     // code haye add kardane todo be MongoDB
     // add mikone be DB
     try {
+        // Check if user is logged in
+        const userId = req.cookies.user;
+        if (!userId) {
+            res.redirect('/user/login')
+        }
         Todo.count({}, async function(err, count) {
-            const todo = await Todo.create({ text: req.body.todo, index: ++count })
+            const todo = await Todo.create({ text: req.body.todo, index: ++count, user_id: userId })
             res.send({ ok: true, todo, login: false })
         });
     } catch (e) {
