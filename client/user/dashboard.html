@@ -15,17 +15,10 @@
         <div class="row">
             <div class="col-12">
                 <div class="p-5 border bg-white">
-                    <div class="d-flex justify-content-between">
-                        <h2 class="mb-5"> Todo list</h2>
-                        <div>
-                            <% if(login==false) { %>
-                                <a class="btn bg-primary" href="user/login">login</a>
-                                <a class="btn bg-success" href="user/register">sign up</a>
-                                <% }else{ %>
-                                    <a class="btn bg-primary" href="user/dashboard.html">panel user</a>
-                                    <a class="btn bg-success" href="user/register">log out</a>
-                                    <% } %>
-                        </div>
+                    <h2 class="mb-5"> Todo list</h2>
+                    <div class="add-items d-flex">
+                        <input type="text" class="form-control todo-list-input mr-3" placeholder="Add new task?" id="item">
+                        <button class="add btn btn-danger todo-list-add-btn" id="add">Add</button>
                     </div>
                     <div class="list-wrapper">
                         <div class="align-items-center d-flex border-bottom flex-md-row flex-column-reverse  justify-content-between">

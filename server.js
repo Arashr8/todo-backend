@@ -1,5 +1,6 @@
 require('dotenv').config({ path: './config/.env' })
 const express = require('express')
+const cookieParser = require('cookie-parser')
 
 // db 
 require('./db')
@@ -16,15 +17,15 @@ app.use(staticFolder)
 // json body parser
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
 
 // routes use
-app.use(todoRoute)
-app.use(authRoute)
-
+app.use('/todos', todoRoute)
+app.use('/user', authRoute)
 
 /**
  * it starts the server on port 80
  */
 app.listen(8080, () => {
-    console.log('Started listening on 80')
+    console.log('Started listening on 8080')
 })

@@ -1,4 +1,5 @@
-function isValidForm() {
+function isValidForm(e) {
+    e.perventDefault()
     const password = document.getElementById("user-password")
     const confirmed_password = document.getElementById("user-confirmed-password")
     const error_placeholder = document.getElementById("errors")
