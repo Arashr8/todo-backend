@@ -8,7 +8,7 @@ const Todo = require('../models/Todo')
 router.get('/', async function(req, res) {
     // Change this to get value from jwt
     const userId = req.cookies.user;
-    if (!userId) {
+    if (!userId || userId == "") {
         res.redirect('/user/login')
     }
     try {

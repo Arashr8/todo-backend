@@ -19,12 +19,12 @@
                     <div class="d-flex justify-content-between">
                         <h2 class="mb-5"> Todo list</h2>
                         <div>
-                            <% if(login==false) { %>
-                                <a class="btn bg-primary" href="user/login">login</a>
-                                <a class="btn bg-success" href="user/register">sign up</a>
+                            <% if(user_id) { %>
+                                <a class="btn bg-primary" href="/user/logout">logout</a>
+                                <a class="btn bg-primary" href="/todos">panel user</a>
                                 <% }else{ %>
-                                    <a class="btn bg-primary" href="user/dashboard.html">panel user</a>
-                                    <a class="btn bg-success" href="user/register">log out</a>
+                                    <a class="btn bg-success" href="/user/login">login</a>
+                                    <a class="btn bg-success" href="/user/register">sign up</a>
                                     <% } %>
                         </div>
                     </div>

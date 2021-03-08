@@ -66,4 +66,15 @@ router.post('/login', async function(req, res) {
     }
 })
 
+router.get('/logout', async function(req, res) {
+    try {
+        res.clearCookie("user")
+        res.redirect('/user/login')
+    } catch (e) {
+        ejs.renderFile('./client/index.ejs', { error: e }, null, function(err, html) {
+            res.status(400).send(html)
+        })
+    }
+})
+
 module.exports = router
