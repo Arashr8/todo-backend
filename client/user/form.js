@@ -21,10 +21,13 @@ function isValidForm() {
     //Validate email address
     const email = document.getElementById("user-email")
     if (email.value == "") {
-        error_placeholder.innerHTML = "Please insert your email address"
+        error_placeholder.innerHTML = "Email is required"
         return false
     }
-
+    if (password.value == "") {
+        error_placeholder.innerHTML = "Passwords is required"
+        return false
+    }
     if (password.value != confirmed_password.value) {
         error_placeholder.innerHTML = "Passwords is not matched"
         return false

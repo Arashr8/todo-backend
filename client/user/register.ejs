@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Register User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -14,11 +17,11 @@
     <span id="errors" style="color:red"></span>
     <span id="info" style="color:green"></span>
 
-    <form>
-        <input type="email" name="email" id="user-email">
-        <input type="password" name="password" id="user-password">
-        <input type="password" name="confirm-password" id="user-confirmed-password">
-        <input type="button" value="register" id="registerBtn">
+    <form class="form-group">
+        <input class="form-control" placeholder="Email" type="email" name="email" id="user-email" required>
+        <input class="form-control" placeholder="Password" type="password" name="password" id="user-password" required>
+        <input class="form-control" placeholder="Confirm Password" type="password" name="confirm-password" id="user-confirmed-password" required>
+        <input class="form-control" type="button" value="register" id="registerBtn">
     </form>
     <script src="./form.js"></script>
 </body>
